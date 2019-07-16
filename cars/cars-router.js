@@ -14,9 +14,9 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
     try {
         const { id } = req.params;
-        const fruit = await db('car-dealer').where({ id });
+        const car = await db('car-dealer').where({ id });
 
-        res.json(fruit);
+        res.json(car);
     } catch (err) {
         res.status(500).json({ message: 'Failed to retrieve car' });
     }
@@ -24,11 +24,11 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
     try {
-        const fruitData = req.body;
-        const [id] = await db('car-dealer').insert(fruitData);
-        const newFruitEntry = await db('car-dealer').where({ id });
+        const carData = req.body;
+        const [id] = await db('car-dealer').insert(carData);
+        const newCarEntry = await db('car-dealer').where({ id });
 
-        res.status(201).json(newFruitEntry);
+        res.status(201).json(newCarEntry);
     } catch (err) {
         console.log('POST error', err);
         res.status(500).json({ message: "Failed to store data" });
