@@ -1,6 +1,6 @@
 exports.up = function (knex) {
     //make changes to the db schema
-    return knex.schema.createTable('car-dealer', tbl => {
+    return knex.schema.createTable('cars', tbl => {
         //add a primary key named id, integer, auto-increment
         tbl.increments();
         //other columns
@@ -14,5 +14,5 @@ exports.up = function (knex) {
 };
 
 exports.down = function (knex) {
-    return knex.schema.dropTableIfExists('car-dealer');
+    return knex.schema.dropTableIfExists('cars');
 };

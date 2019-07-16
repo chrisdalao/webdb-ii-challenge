@@ -1,9 +1,9 @@
 
 exports.seed = function (knex) {
-  return knex('car-dealer')
+  return knex('cars')
     .truncate()
     .then(function () {
-      return knex('car-dealer').insert([
+      return knex('cars').insert([
         { VIN: '123', make: 'Toyota', model: 'Camry', mileage: 10001 },
         { VIN: '383', make: 'Lexus', model: 'LS430', mileage: 10002 },
         { VIN: '555', make: 'Mercedes', model: 'G63', mileage: 10003 },

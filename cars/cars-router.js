@@ -4,7 +4,7 @@ const router = express.Router();
 
 router.get('/', async (req, res) => {
     try {
-        const cars = await db('car-dealer');
+        const cars = await db('cars');
         res.json(cars);
     } catch (err) {
         res.status(500).json({ message: 'Failed to retrieve cars' });
@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
     try {
         const { id } = req.params;
-        const car = await db('car-dealer').where({ id });
+        const car = await db('cars').where({ id });
 
         res.json(car);
     } catch (err) {
@@ -25,8 +25,8 @@ router.get('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
     try {
         const carData = req.body;
-        const [id] = await db('car-dealer').insert(carData);
-        const newCarEntry = await db('car-dealer').where({ id });
+        const [id] = await db('cars').insert(carData);
+        const newCarEntry = await db('cars').where({ id });
 
         res.status(201).json(newCarEntry);
     } catch (err) {
@@ -36,7 +36,7 @@ router.post('/', async (req, res) => {
 });
 
 router.put('/:id', (req, res) => {
-    db('car-dealer')
+    db('cars')
         .where({ id: req.params.id })
         .update(req.body)
         .then(count => {
@@ -53,7 +53,7 @@ router.put('/:id', (req, res) => {
 
 
 router.delete('/:id', (req, res) => {
-    db('car-dealer')
+    db('cars')
         .where({ id: req.params.id })
         .del()
         .then(count => {
